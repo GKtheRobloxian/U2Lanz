@@ -17,6 +17,11 @@ public class AnimalForward : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
         if (transform.position.z < -10)
         {
+            Debug.Log("Game Over!");
+            Destroy(gameObject);
+        }
+        else if (transform.position.z > 30)
+        {
             Destroy(gameObject);
         }
     }

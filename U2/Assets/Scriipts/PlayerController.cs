@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public GameObject projectile;
     float fireRate;
     float usedTimer;
+    float addition;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if ((transform.position.x < 0 && (Input.GetKey(KeyCode.RightArrow)))||(transform.position.x > 0 && (Input.GetKey(KeyCode.LeftArrow))))
+        {
+            addition = 15.0f + Mathf.Abs(transform.position.x);
+        }
+        else if ((transform.position.x > 0&&(Input.GetKey(KeyCode.RightArrow)))||(transform.position.x < 0 && Input.GetKey(KeyCode.LeftArrow)))
+        {
+            addition = 15-Mathf.Abs(transform.position.x);
+        }
+        else
+        {
+            addition = 15;
+        }
         fireRate -= Time.deltaTime;
         if (Input.GetKey("a"))
         {
@@ -42,7 +55,12 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.LeftArrow)&&usedTimer < 0)
         {
-            transform.position = new Vector3 (-15, 0, 0);
+            transform.position = new Vector3(-15, 0, 0);
+            usedTimer = dashTimer;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            transform.position = new Vector3(transform.position.x - ((dashTimer - usedTimer) / dashTimer * addition), 0, 0);
             usedTimer = dashTimer;
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
@@ -58,6 +76,11 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(15, 0, 0);
             usedTimer = dashTimer;
         }
+        else if (Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            transform.position = new Vector3(transform.position.x + ((dashTimer - usedTimer) / dashTimer * addition), 0, 0);
+            usedTimer = dashTimer;
+        }
         if(transform.position.x < -xRange)
         {
             transform.position = new Vector3(-xRange+1, 0, 0);
@@ -71,5 +94,6 @@ public class PlayerController : MonoBehaviour
             Instantiate(projectile, transform.position, projectile.transform.rotation);
             fireRate = initialFireRate;
         }
+        UiDashBar.instance.SetValue((dashTimer - usedTimer) / dashTimer);
     }
 }
