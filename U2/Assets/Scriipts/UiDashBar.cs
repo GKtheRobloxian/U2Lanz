@@ -22,6 +22,6 @@ public class UiDashBar : MonoBehaviour
     // Update is called once per frame
     public void SetValue(float value)
     {
-        mask.transform.localScale += (new Vector3 (0, value, 0));
+        mask.transform.localScale = (new Vector3 (1, value, 1));
     }
 }

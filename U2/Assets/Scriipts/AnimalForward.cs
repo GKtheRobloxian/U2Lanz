@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class AnimalForward : MonoBehaviour
 {
@@ -17,10 +18,17 @@ public class AnimalForward : MonoBehaviour
         transform.Translate(Vector3.forward * Time.deltaTime * speed);
         if (transform.position.z < -10)
         {
-            Debug.Log("Game Over!");
             Destroy(gameObject);
         }
         else if (transform.position.z > 30)
+        {
+            Destroy(gameObject);
+        }
+        else if (transform.position.x > 30)
+        {
+            Destroy(gameObject);
+        }
+        else if (transform.position.x < -30)
         {
             Destroy(gameObject);
         }
