@@ -177,10 +177,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
-        }
-        else
-        {
-            return;
+            Debug.Log("Crash!");
         }
     }
 }

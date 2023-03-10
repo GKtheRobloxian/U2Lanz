@@ -8,8 +8,8 @@ public class SpawnManager : MonoBehaviour
     float orientation;
     float initialSpawnTimer = 1.0f;
     float spawnTimer;
-    Quaternion rotation = Quaternion.Euler(0, 90, 0);
-    Quaternion rotation2 = Quaternion.Euler(0, 270, 0);
+    Vector3 rotation = new Vector3(0, 90, 0);
+    Vector3 rotation2 = new Vector3(0, -90, 0);
     // Start is called before the first frame update
     void Start()
     {
@@ -31,13 +31,13 @@ public class SpawnManager : MonoBehaviour
         else if (spawnTimer < 0 && orientation == 2)
         {
             int animalIndex = Random.Range(0, animalPrefabs.Length);
-            Instantiate(animalPrefabs[animalIndex], new Vector3(-25, 0, Random.Range(-2,15)), rotation);
+            Instantiate(animalPrefabs[animalIndex], new Vector3(-25, 0, Random.Range(-2,15)), Quaternion.Euler(rotation));
             spawnTimer = initialSpawnTimer;
         }
-        else if (spawnTimer < 0 && orientation == 3)
+        else if (spawnTimer < 0)
         {
             int animalIndex = Random.Range(0, animalPrefabs.Length);
-            Instantiate(animalPrefabs[animalIndex], new Vector3(25, 0, Random.Range(-2, 15)), rotation2);
+            Instantiate(animalPrefabs[animalIndex], new Vector3(25, 0, Random.Range(-2, 15)), Quaternion.Euler(rotation + new Vector3 (0, 180, 0)));
             spawnTimer = initialSpawnTimer;
         }
     }

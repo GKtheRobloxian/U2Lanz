@@ -24,11 +24,11 @@ public class AnimalForward : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        else if (transform.position.x > 30)
+        else if (transform.position.x > 40)
         {
             Destroy(gameObject);
         }
-        else if (transform.position.x < -30)
+        else if (transform.position.x < -40)
         {
             Destroy(gameObject);
         }
