@@ -6,14 +6,16 @@ using UnityEngine;
 
 public class DetectCollisions : MonoBehaviour
 {
+
+    Canvas Ui;
     UiDashBar UI;
     TMP_Text TMP;
-    int score;
 
     // Start is called before the first frame update
     void Awake()
     {
-        UI = GetComponent<UiDashBar>();
+        Ui = FindObjectOfType<Canvas>();
+        UI = Ui.GetComponent<UiDashBar>();
     }
 
     // Update is called once per frame
@@ -28,13 +30,6 @@ public class DetectCollisions : MonoBehaviour
         if (controller != null)
         {
             return;
-        }
-        else
-        {
-            UI.Scorey();
-            TMP = FindObjectOfType<TMP_Text>();
-            Destroy(other.gameObject);
-            Destroy(gameObject);
         }
     }
 }

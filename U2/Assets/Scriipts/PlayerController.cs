@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    int Lives = 3;
     public float horizontalInput;
     public float speed = 10.0f;
     public float dashTimer = 5.0f;
@@ -176,8 +177,13 @@ public class PlayerController : MonoBehaviour
         if (controller != null)
         {
             Destroy(other.gameObject);
-            Destroy(gameObject);
-            Debug.Log("Crash!");
+            Lives -= 1;
+            UiDashBar.instance.LifeText(Lives);
+            if (Lives == 0)
+            {
+                Destroy(gameObject);
+                UiDashBar.instance.GameOver();
+            }
         }
     }
 }
