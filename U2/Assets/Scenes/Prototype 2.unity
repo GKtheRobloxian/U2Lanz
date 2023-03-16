@@ -626,7 +626,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 45
-  orthographic: 0
+  orthographic: 1
   orthographic size: 10
   m_Depth: -1
   m_CullingMask:
@@ -1161,7 +1161,7 @@ GameObject:
   - component: {fileID: 1309038199}
   - component: {fileID: 1309038203}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UltraInstinct
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

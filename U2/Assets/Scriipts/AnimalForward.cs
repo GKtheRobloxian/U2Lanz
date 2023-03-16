@@ -7,20 +7,22 @@ using UnityEngine.UIElements;
 public class AnimalForward : MonoBehaviour
 {
     public float speed = 10.0f;
-    public int Hunger;
+    public int maxHunger;
     public int destroyScore;
-    Canvas Ui;
+    int Hunger;
+    GameObject Ui;
     UiDashBar UI;
     TMP_Text TMP;
-    Canvas slide;
+    Slider slide;
     Foodie food;
     // Start is called before the first frame update
     void Start()
     {
-        slide = FindObjectOfType<Canvas>();
-        food = slide.GetComponent<Foodie>();
-        Ui = FindObjectOfType<Canvas>();
+        food = GetComponent<Foodie>();
+        Ui = GameObject.Find("/UltraInstinct");
         UI = Ui.GetComponent<UiDashBar>();
+        food.maxValue = maxHunger;
+        Hunger = maxHunger;
     }
 
     // Update is called once per frame
@@ -52,7 +54,7 @@ public class AnimalForward : MonoBehaviour
             UI.Scorey(1);
             Destroy(other.gameObject);
             Hunger -= 1;
-            food.SetValue(Hunger);
+            food.SetValue(maxHunger - Hunger);
             if (Hunger == 0)
             {
                 UI.Scorey(destroyScore);

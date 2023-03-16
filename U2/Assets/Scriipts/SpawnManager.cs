@@ -34,11 +34,5 @@ public class SpawnManager : MonoBehaviour
             Instantiate(animalPrefabs[animalIndex], new Vector3(-25, 0, Random.Range(-2,15)), Quaternion.Euler(rotation));
             spawnTimer = initialSpawnTimer;
         }
-        else if (spawnTimer < 0)
-        {
-            int animalIndex = Random.Range(0, animalPrefabs.Length);
-            Instantiate(animalPrefabs[animalIndex], new Vector3(25, 0, Random.Range(-2, 15)), Quaternion.Euler(rotation + new Vector3 (0, 180, 0)));
-            spawnTimer = initialSpawnTimer;
-        }
     }
 }

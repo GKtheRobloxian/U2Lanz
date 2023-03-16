@@ -7,13 +7,22 @@ public class Foodie : MonoBehaviour
 {
     public static Foodie instance { get; private set; }
 
+    public GameObject animal;
     public Slider slider;
-    AnimalForward moo;
+    public Image sliderFill;
+    public int maxValue;
+    float sliderPercentage;
+    AnimalForward Animal;
+    
+    void Awake()
+    {
+        Animal = animal.GetComponent<AnimalForward>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        moo = GetComponent<AnimalForward>();
-        slider.maxValue = gameObject.AnimalForward.Hunger;
+        slider.maxValue = maxValue;
         slider.value = 0;
         slider.fillRect.gameObject.SetActive(false);
     }
@@ -21,7 +30,7 @@ public class Foodie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void SetValue(float value)
