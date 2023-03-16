@@ -9,4 +9,12 @@ public class DetectCollisionsX : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    private void Update()
+    {
+        if (transform.position.y < -4)
+        {
+            Debug.Log("Game Over!");
+        }
+    }
 }
